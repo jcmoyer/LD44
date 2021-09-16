@@ -259,12 +259,12 @@ export default class Game {
 
     const playerView = this.player.getInterpolatedViewMatrix(alpha);
     this.levelRenderer.render(this.projMatrix, playerView);
+
+    this.exitEmitter.render(playerView, this.projMatrix, this.level.fogColor, this.level.fogDensity, alpha);
     
     for (let death of this.enemies) {
       this.deathRenderer.render(death, playerView, this.projMatrix, this.level.fogColor, this.level.fogDensity, alpha);
     }
-
-    this.exitEmitter.render(playerView, this.projMatrix, this.level.fogColor, this.level.fogDensity, alpha);
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 

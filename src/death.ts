@@ -134,6 +134,7 @@ export class DeathRenderer {
 
   render(death: Death, view: mat4, proj: mat4, fogColor: number[], fogDensity: number, alpha: number) {
     const gl = this.gl;
+    gl.depthMask(false);
     this.shader.use();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.pointBuffer);
 
@@ -154,5 +155,6 @@ export class DeathRenderer {
 
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
+    gl.depthMask(true);
   }
 }
